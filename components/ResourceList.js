@@ -45,16 +45,16 @@ const GET_PRODUCTS_BY_ID = gql`
 const ResourceListWithProducts = () => {
     
     const twoWeeksFromNow = new Date(Date.now() + 12096e5).toDateString();
+    const app = useContext(Context);
+    console.log("app = ", app);
 
-    // const app = useContext()
-    // console.log("app context = ", app)
-    // const redirectToProduct = () => {
-    //   // const redirect = Redirect.create();
-    //   // redirect.dispatch(
-    //   //   Redirect.Action.APP,
-    //   //   '/edit-products',
-    //   // );
-    // };
+    const redirectToProduct = () => {
+      const redirect = Redirect.create(app);
+      redirect.dispatch(
+        Redirect.Action.APP,
+        '/edit-products'
+      );
+    };
 
     return (
         <Query query={GET_PRODUCTS_BY_ID} variables={{ ids: store.get('ids') }}>
@@ -88,10 +88,10 @@ const ResourceListWithProducts = () => {
                                         id={item.id}
                                         media={media}
                                         accessibilityLabel={`View details for ${item.title}`}
-                                        // onClick={() => {
-                                        //   store.set('item', item);
-                                        //   redirectToProduct();
-                                        // }}
+                                        onClick={() => {
+                                          store.set('item', item);
+                                          redirectToProduct();
+                                        }}
                                     >
                                         <Stack>
                                             <Stack.Item fill>
