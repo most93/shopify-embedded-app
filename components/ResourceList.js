@@ -46,8 +46,7 @@ const ResourceListWithProducts = () => {
     
     const twoWeeksFromNow = new Date(Date.now() + 12096e5).toDateString();
     const app = useContext(Context);
-    console.log("app = ", app);
-
+    
     const redirectToProduct = () => {
       const redirect = Redirect.create(app);
       redirect.dispatch(
